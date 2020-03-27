@@ -43,15 +43,24 @@ It is important that the toolchain is placed in this folder because of hardcoded
 
 Following the extraction, we then need to set the environment variables to allow the shell recognize the installation. This can be done by running
 ```bash
-export
-export 
+export K4_YOCTO=/usr/local/khepera4-yocto/build/tmp/sysroots/i686-linux/usr/bin/armv7a-vfp-neon-poky-linux-gnueabi
+export PATH=$K4_YOCTO/arm-poky-linux-gnueabi
 ```
+These will have to be run in every bash instance to ensure the toolchain is available for use. To automate this process a little, I like to add those two lines to the end of the ~/.bashrc file. Doing so eliminates the need to run them every time the shell is opened.
 
 #### Install Khepera Library
-The version of the Khepera library used in this package is 2.0, and can be downloaded from
+The version of the Khepera library used in this package is 2.0, and can be downloaded
 [here](http://ftp.k-team.com/KheperaIV/software/Gumstix%20COM/library/).
 
-You will need to then transfer this
+You will need to run
+```bash
+tar -xjf libkhepera-2.0.tar.bz2 -C ~/khepera4_development
+cd ~/khepera4_development/libkhepera-2.0
+make clean
+make all
+```
+Assuming you made no changes to the library, you shouldn't have to transfer any of the built files to the robot.
+
 
 The Aruco dictionary used by this project is DICT_4X4_50
 
@@ -69,7 +78,14 @@ https://docs.opencv.org/2.4/doc/tutorials/introduction/crosscompilation/arm_cros
 
 For starters, we do not need the *gcc-arm-linux-gnueabi* tools since our toolchain is the *arm-poky-linux-gnueabi* tools downloaded above.
 
-The main aspects of the  that need to be adapted from the
+
 ```bash
 cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules/aruco -DOPENCV_ENABLE_CXX11=OFF -DSOFTFP=ON -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_TOOLCHAIN_FILE=../arm-gnueabi.toolchain.cmake -DBUILD_OPENCV_PYTHON=OFF ../opencv
 ```
+Of particular note is the
+```bash
+-DCMAKE_TOOLCHAIN_FILE=../arm-gnueabi.toolchain.cmake
+```
+command. This should point to the path where the files in the *opencv-toolchain-files* (from this repo) are located.
+
+Should everything go well,
