@@ -2,6 +2,8 @@
 
 This package was developed by Chukwuemeka Osaretin Ike (2020) to facilitate a research project in the Julius Lab at Rensselaer Polytechnic Institute.
 
+The tools described here employ the OpenCV and ArUco libraries in estimating the pose of a Khepera IV robot with respect to ArUco markers placed throughout an experimental space.
+
 ## Purpose
 The contents of this repository are intended to assist the user in setting up:
 1. A cross-compilation environment using the Arm Linux Poky toolchain provided by the K-team.
@@ -59,18 +61,15 @@ cd ~/khepera4_development/libkhepera-2.0
 make clean
 make all
 ```
-Assuming you made no changes to the library, you shouldn't have to transfer any of the built files to the robot.
+Assuming you made no changes to the library, you shouldn't have to transfer any of the built files to the robot. The header files that are generated in the *'libkhepera-2.0/build-khepera-3.5.7-custom/include'* folder are the same that are in the *include* folder of this repo
 
 
 The Aruco dictionary used by this project is DICT_4X4_50
 
-The tools in this repo employ the OpenCV and ArUco libraries in estimating the pose of a Khepera IV robot with respect to ArUco markers placed throughout the experimental space.
-
-The functionality was developed by Chukwuemeka Ike to aid Ruixuan Yan in his experiments which required that a swarm of robots be able to find their collective centroid.
 
 ## OpenCV
 #### Required Setup
-This is the mainThe proposed system uses the ArUco library to estimate the pose
+This is the main
 
 #### Building OpenCV for ARM
 Instructions on how to cross-compile the OpenCV library for a generic ARM-based Linux system are available [here](
