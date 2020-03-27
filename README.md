@@ -80,12 +80,24 @@ For starters, we do not need the *gcc-arm-linux-gnueabi* tools since our toolcha
 
 
 ```bash
+mkdir build
+cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules/aruco -DOPENCV_ENABLE_CXX11=OFF -DSOFTFP=ON -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_TOOLCHAIN_FILE=../arm-gnueabi.toolchain.cmake -DBUILD_OPENCV_PYTHON=OFF ../opencv
 ```
-Of particular note is the
+Information on what all these parameters mean is available [here]().
+
+Of note here is the
 ```bash
 -DCMAKE_TOOLCHAIN_FILE=../arm-gnueabi.toolchain.cmake
 ```
-command. This should point to the path where the files in the *opencv-toolchain-files* (from this repo) are located.
+parameter. This should point to the path where the files in the *opencv-toolchain-files* (from this repo) are located. These specify that the make utility uses the Poky toolchain, allowing us run the OpenCV binaries and our own code on the Khepera IV.
 
-Should everything go well,
+Should everything go well, you can then run:
+```bash
+make -j7
+make install
+```
+
+The built OpenCV library should now be compatible for the Khepera robot.
+
+The last thing that needs to be done to ensure the robot can use the library is to copy the files from the /build/lib
