@@ -4,6 +4,9 @@ This package was developed by Chukwuemeka Osaretin Ike (2020) to facilitate a re
 
 The tools described here employ the OpenCV and ArUco libraries in estimating the pose of a Khepera IV robot with respect to ArUco markers placed throughout an experimental space.
 
+## Status
+This project is a work in progress, but is nearing its final form.
+
 ## Purpose
 The contents of this repository are intended to assist the user in setting up:
 1. A cross-compilation environment using the Arm Linux Poky toolchain provided by the K-team.
@@ -30,6 +33,23 @@ The robot possesses the following:
 
 This information is most useful when building the OpenCV library, as it determines the GNU toolchain and the versions of the C++ standard libraries that can be used.
 
+## Preliminary Setup
+Before any of the other tools can be setup, the following packages need to be installed on your system
+1. Libv4l-0
+2. v4l-utils
+3. libv4l-dev
+4. Libc6-armel-cross
+5. Libc6-dev-armel-cross
+6. Lib32z1
+7. Binutils-arm-linux-gnueabi
+
+I will admit, there is some redundancy in installing every one of those packages, but it doesn't hurt to cross-check. To install, run:
+```bash
+sudo apt install libv4l-0 v4l-utils libv4l-dev libc6-armel-cross libc6-dev-armel-cross lib32z1 binutils-arm-linux-gnueabi
+```
+Having these all installed before attempting to install the Khepera and OpenCV tools will make for a much smoother experience.
+
+Once these are done, you can proceed to the next stage of the process.
 
 ## Khepera Tools
 The manual suggests making a folder named 'khepera4_development' in the home folder, which is what was done, and this will be used for the rest of the tutorial.
@@ -69,7 +89,7 @@ The Aruco dictionary used by this project is DICT_4X4_50
 
 ## OpenCV
 #### Required Setup
-This is the main
+The
 
 #### Building OpenCV for ARM
 Instructions on how to cross-compile the OpenCV library for a generic ARM-based Linux system are available [here](
@@ -99,4 +119,4 @@ make install
 
 The built OpenCV library should now be compatible for the Khepera robot.
 
-The last thing that needs to be done to ensure the robot can use the library is to copy the files from the /build/lib
+The last thing that needs to be done to ensure the robot can use the library is to copy the files from the *lib/* in your build directory to the robot's */usr/lib* folder. This is a fairly crude way of doing this, but after the numerous issues I came across with getting the project started, it became the least of my worries.
