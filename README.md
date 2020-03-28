@@ -65,10 +65,10 @@ It is important that the toolchain is placed in this folder because of hardcoded
 
 Following the extraction, we then need to set the environment variables to allow the shell recognize the installation. This can be done by running
 ```bash
-export K4_YOCTO=/usr/local/khepera4-yocto/build/tmp/sysroots/i686-linux/usr/bin/armv7a-vfp-neon-poky-linux-gnueabi
-export PATH=$K4_YOCTO/arm-poky-linux-gnueabi
+export K4_YOCTO=/usr/local/khepera4-yocto/build/tmp/sysroots/i686-linux/usr/bin
+export PATH=$PATH:$K4_YOCTO/armv7a-vfp-neon-poky-linux-gnueabi
 ```
-These will have to be run in every bash instance to ensure the toolchain is available for use. To automate this process a little, I like to add those two lines to the end of the ~/.bashrc file. Doing so eliminates the need to run them every time the shell is opened.
+These will have to be run in every bash instance to ensure the toolchain is available for use. To automate this process a little, I added those two lines to the end of the ~/.bashrc file. Doing so eliminates the need to run the commands every time the shell is opened.
 
 #### Install Khepera Library
 The version of the Khepera library used in this package is 2.0, and can be downloaded
