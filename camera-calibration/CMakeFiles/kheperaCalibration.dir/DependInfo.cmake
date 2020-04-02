@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/chukwuemeka/khepera4_development/crossCompile/cross.cpp" "/home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles/cross.dir/cross.cpp.o"
+  "/home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/kheperaCalibration.cpp" "/home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/CMakeFiles/kheperaCalibration.dir/kheperaCalibration.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

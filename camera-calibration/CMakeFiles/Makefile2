@@ -59,45 +59,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chukwuemeka/khepera4_development/crossCompile
+CMAKE_SOURCE_DIR = /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chukwuemeka/khepera4_development/crossCompile
+CMAKE_BINARY_DIR = /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration
 
 #=============================================================================
-# Target rules for target CMakeFiles/poseEstimate.dir
+# Target rules for target CMakeFiles/kheperaCalibration.dir
 
 # All Build rule for target.
-CMakeFiles/poseEstimate.dir/all:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/depend
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles --progress-num=1,2 "Built target poseEstimate"
-.PHONY : CMakeFiles/poseEstimate.dir/all
+CMakeFiles/kheperaCalibration.dir/all:
+	$(MAKE) -f CMakeFiles/kheperaCalibration.dir/build.make CMakeFiles/kheperaCalibration.dir/depend
+	$(MAKE) -f CMakeFiles/kheperaCalibration.dir/build.make CMakeFiles/kheperaCalibration.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/CMakeFiles --progress-num=1,2 "Built target kheperaCalibration"
+.PHONY : CMakeFiles/kheperaCalibration.dir/all
 
 # Include target in all.
-all: CMakeFiles/poseEstimate.dir/all
+all: CMakeFiles/kheperaCalibration.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/poseEstimate.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/poseEstimate.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles 0
-.PHONY : CMakeFiles/poseEstimate.dir/rule
+CMakeFiles/kheperaCalibration.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/kheperaCalibration.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/CMakeFiles 0
+.PHONY : CMakeFiles/kheperaCalibration.dir/rule
 
 # Convenience name for target.
-poseEstimate: CMakeFiles/poseEstimate.dir/rule
+kheperaCalibration: CMakeFiles/kheperaCalibration.dir/rule
 
-.PHONY : poseEstimate
-
-# clean rule for target.
-CMakeFiles/poseEstimate.dir/clean:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/clean
-.PHONY : CMakeFiles/poseEstimate.dir/clean
+.PHONY : kheperaCalibration
 
 # clean rule for target.
-clean: CMakeFiles/poseEstimate.dir/clean
+CMakeFiles/kheperaCalibration.dir/clean:
+	$(MAKE) -f CMakeFiles/kheperaCalibration.dir/build.make CMakeFiles/kheperaCalibration.dir/clean
+.PHONY : CMakeFiles/kheperaCalibration.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/kheperaCalibration.dir/clean
 
 .PHONY : clean
 

@@ -1054,20 +1054,6 @@ opencv2/aruco/dictionary.hpp
 opencv2/core.hpp
 -
 
-/home/chukwuemeka/khepera4_development/crossCompile/cross.cpp
-include/khepera.h
-/home/chukwuemeka/khepera4_development/crossCompile/include/khepera.h
-opencv2/opencv.hpp
--
-opencv2/aruco.hpp
--
-stdlib.h
--
-stdio.h
--
-iostream
--
-
 /home/chukwuemeka/khepera4_development/crossCompile/include/kb_camera.h
 
 /home/chukwuemeka/khepera4_development/crossCompile/include/kb_cmdparser.h
@@ -1193,4 +1179,18 @@ koreio.h
 /home/chukwuemeka/khepera4_development/crossCompile/include/knet.h
 
 /home/chukwuemeka/khepera4_development/crossCompile/include/koreio.h
+
+/home/chukwuemeka/khepera4_development/crossCompile/poseEstimate.cpp
+include/khepera.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/khepera.h
+opencv2/opencv.hpp
+-
+opencv2/aruco.hpp
+-
+stdlib.h
+-
+stdio.h
+-
+iostream
+-
 

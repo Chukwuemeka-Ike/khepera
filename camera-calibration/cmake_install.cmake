@@ -1,4 +1,4 @@
-# Install script for directory: /home/chukwuemeka/khepera4_development/crossCompile
+# Install script for directory: /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/chukwuemeka/khepera4_development/crossCompile/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

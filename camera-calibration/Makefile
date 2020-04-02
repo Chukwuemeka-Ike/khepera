@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chukwuemeka/khepera4_development/crossCompile
+CMAKE_SOURCE_DIR = /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chukwuemeka/khepera4_development/crossCompile
+CMAKE_BINARY_DIR = /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/CMakeFiles /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/camera-calibration/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named poseEstimate
+# Target rules for targets named kheperaCalibration
 
 # Build rule for target.
-poseEstimate: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 poseEstimate
-.PHONY : poseEstimate
+kheperaCalibration: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kheperaCalibration
+.PHONY : kheperaCalibration
 
 # fast build rule for target.
-poseEstimate/fast:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/build
-.PHONY : poseEstimate/fast
+kheperaCalibration/fast:
+	$(MAKE) -f CMakeFiles/kheperaCalibration.dir/build.make CMakeFiles/kheperaCalibration.dir/build
+.PHONY : kheperaCalibration/fast
 
-poseEstimate.o: poseEstimate.cpp.o
+kheperaCalibration.o: kheperaCalibration.cpp.o
 
-.PHONY : poseEstimate.o
+.PHONY : kheperaCalibration.o
 
 # target to build an object file
-poseEstimate.cpp.o:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/poseEstimate.cpp.o
-.PHONY : poseEstimate.cpp.o
+kheperaCalibration.cpp.o:
+	$(MAKE) -f CMakeFiles/kheperaCalibration.dir/build.make CMakeFiles/kheperaCalibration.dir/kheperaCalibration.cpp.o
+.PHONY : kheperaCalibration.cpp.o
 
-poseEstimate.i: poseEstimate.cpp.i
+kheperaCalibration.i: kheperaCalibration.cpp.i
 
-.PHONY : poseEstimate.i
+.PHONY : kheperaCalibration.i
 
 # target to preprocess a source file
-poseEstimate.cpp.i:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/poseEstimate.cpp.i
-.PHONY : poseEstimate.cpp.i
+kheperaCalibration.cpp.i:
+	$(MAKE) -f CMakeFiles/kheperaCalibration.dir/build.make CMakeFiles/kheperaCalibration.dir/kheperaCalibration.cpp.i
+.PHONY : kheperaCalibration.cpp.i
 
-poseEstimate.s: poseEstimate.cpp.s
+kheperaCalibration.s: kheperaCalibration.cpp.s
 
-.PHONY : poseEstimate.s
+.PHONY : kheperaCalibration.s
 
 # target to generate assembly for a file
-poseEstimate.cpp.s:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/poseEstimate.cpp.s
-.PHONY : poseEstimate.cpp.s
+kheperaCalibration.cpp.s:
+	$(MAKE) -f CMakeFiles/kheperaCalibration.dir/build.make CMakeFiles/kheperaCalibration.dir/kheperaCalibration.cpp.s
+.PHONY : kheperaCalibration.cpp.s
 
 # Help Target
 help:
@@ -157,11 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... poseEstimate"
+	@echo "... kheperaCalibration"
 	@echo "... edit_cache"
-	@echo "... poseEstimate.o"
-	@echo "... poseEstimate.i"
-	@echo "... poseEstimate.s"
+	@echo "... kheperaCalibration.o"
+	@echo "... kheperaCalibration.i"
+	@echo "... kheperaCalibration.s"
 .PHONY : help
 
 
