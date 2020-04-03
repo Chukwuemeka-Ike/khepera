@@ -2,7 +2,7 @@
 
 # Declare the echo variables to let you know what's going on
 SET_PIPES="Setting the pipes to allow capture"
-TAKING_PHOTO="Capturing photo"
+TAKING_PHOTO="Capturing a photo"
 RUNNING_PROC="Processing the image"
 
 
