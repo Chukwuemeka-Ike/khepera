@@ -13,9 +13,7 @@ The contents of this repository are intended to assist the user in setting up:
 2. A cross-compiled version of the OpenCV library allowing you build your applications on a Linux host, and run them on the Khepera.
 3. A method to allow communications between a swarm of Kheppies.
 
-You will need:
-1. Linux computer/virtual machine.
-2.
+You will need a Linux computer/virtual machine to carry out this tutorial.
 
 ## Background
 There are some important things to understand about the Khepera IV robot which will help understand why certain things can or can't be done on the bot.
