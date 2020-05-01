@@ -13,7 +13,7 @@ The contents of this repository are intended to assist the user in setting up:
 2. A cross-compiled version of the OpenCV library allowing you build your applications on a Linux host, and run them on the Khepera.
 3. A method to allow communications between a swarm of Kheppies.
 
-You will need a Linux computer/virtual machine to carry out this tutorial.
+I assume for this tutorial that you are using a Linux computer/virtual machine with apt as your package manager, and the bash shell.
 
 ## Background
 There are some important things to understand about the Khepera IV robot which will help understand why certain things can or can't be done on the bot.
@@ -27,12 +27,11 @@ The robot possesses the following:
 2. Gumstix Overo Processor with armv7l architecture
 3. Angstrom Distribution
 4. Poky as the packager
-5.
 
 This information is most useful when building the OpenCV library, as it determines the GNU toolchain and the versions of the C++ standard libraries that can be used.
 
 ## Preliminary Setup
-Before any of the other tools can be setup, the following packages need to be installed on your system
+Before any of the other tools can be setup, the following packages need to be installed on your Linux system:
 1. Libv4l-0
 2. v4l-utils
 3. libv4l-dev
@@ -59,7 +58,7 @@ You then need to run the following:
 ```bash
 sudo tar -xjf khepera4-yocto-light-kb1.0.tar.bz2 -C /usr/local
 ```
-It is important that the toolchain is placed in this folder because of hardcoded links in the code. Of course, this can be changed if a savvy user really wants to.
+It is important that the toolchain is placed in this folder because of hardcoded links in the code. Of course, this can be changed if you really want to.
 
 Following the extraction, we then need to set the environment variables to allow the shell recognize the installation. This can be done by running
 ```bash
@@ -72,22 +71,27 @@ These will have to be run in every bash instance to ensure the toolchain is avai
 The version of the Khepera library used in this package is 2.0, and can be downloaded
 [here](http://ftp.k-team.com/KheperaIV/software/Gumstix%20COM/library/).
 
-You will need to run
+You will need to run:
 ```bash
 tar -xjf libkhepera-2.0.tar.bz2 -C ~/khepera4_development
 cd ~/khepera4_development/libkhepera-2.0
 make clean
 make all
 ```
-Assuming you made no changes to the library, you shouldn't have to transfer any of the built files to the robot. The header files that are generated in the *'libkhepera-2.0/build-khepera-3.5.7-custom/include'* folder are the same that are in the *include* folder of this repo
+Assuming you made no changes to the library, you shouldn't have to transfer any of the built files to the robot. Should the need arise, the *libkhepera.so.2.0* and *libkhepera.a* files generated in the *'libkhepera-2.0/build-khepera-3.5.7-custom/lib'* folder will need to be transferred to the Khepera's */usr/lib* folder.
 
+The header files that are generated in the *'libkhepera-2.0/build-khepera-3.5.7-custom/include'* folder are the same that are in the */include* folder of this repository, and are the ones used in building the sample applications.
+
+***
 
 The Aruco dictionary used by this project is DICT_4X4_50
 
 
 ## OpenCV
 #### Required Setup
-The
+To get started, you will need to download the [OpenCV](https://github.com/opencv/opencv) and [OpenCV_contrib](https://github.com/opencv/opencv_contrib) library files. The first link contains the core OpenCV files, while the second contains a bunch of extra modules that add some capabilities, albeit with some stability issues. The AruCo library is contained in the *contrib* repo.
+
+I suggest cloning both of these repos into the same OpenCV folder in your home directory. After doing so, you can move on to the next step of the process.
 
 #### Building OpenCV for ARM
 Instructions on how to cross-compile the OpenCV library for a generic ARM-based Linux system are available [here](
