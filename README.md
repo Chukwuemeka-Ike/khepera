@@ -126,6 +126,10 @@ The last thing that needs to be done to ensure the robot can use the library is 
 
 I must mention that a number of the parameters used in building the library can probably be changed without adverse effects on the overall build, but I opted to not test every possible configuration, since I wasn't going for a large-scale deployment of this system. I leave it up to you to customize your own build as you'd like.
 
+Now that you can use the OpenCV library on the Khepera, it's important that we first calibrate the camera, so as to allow for fairly accurate pose estimation.
+
+## Camera Calibration
+There are a million and one fairly exhaustive camera calibration tutorials, and I believe they all do it better than I can, so I will refrain from attempting. All that bears saying here is that in order for the robot to be able to consistently estimate the position of the AruCo tags relative to itself, it needs to have the intrinsic and extrinsic camera parameters. The code in the *camera-calibration/* folder aims to extract these parameters by taking a series of photos using the camera, and then measuring the distortion over all these images.
 
 ## Networking
 The
