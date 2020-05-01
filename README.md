@@ -99,15 +99,16 @@ https://docs.opencv.org/2.4/doc/tutorials/introduction/crosscompilation/arm_cros
 
 For starters, we do not need the *gcc-arm-linux-gnueabi* tools since our toolchain is the *arm-poky-linux-gnueabi* tools downloaded above.
 
+Copy the files from the */opencv-toolchain-files* folder in this repo into the OpenCV folder where the OpenCV and OpenCV_contrib folders are located, then run the following commands in the shell.
 
 ```bash
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules/aruco -DOPENCV_ENABLE_CXX11=OFF -DSOFTFP=ON -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_TOOLCHAIN_FILE=../arm-gnueabi.toolchain.cmake -DBUILD_OPENCV_PYTHON=OFF ../opencv
 ```
-Information on what all these parameters mean is available [here]().
+Information on these and more parameters is available [here](https://github.com/opencv/opencv/blob/master/CMakeLists.txt). I find that a number of them are self-explanatory, so I won't go into further detail.
 
-Of note here is the
+One thing to note here is the
 ```bash
 -DCMAKE_TOOLCHAIN_FILE=../arm-gnueabi.toolchain.cmake
 ```
@@ -115,10 +116,16 @@ parameter. This should point to the path where the files in the *opencv-toolchai
 
 Should everything go well, you can then run:
 ```bash
-make -j7
+make -j5
 make install
 ```
 
 The built OpenCV library should now be compatible for the Khepera robot.
 
-The last thing that needs to be done to ensure the robot can use the library is to copy the files from the *lib/* in your build directory to the robot's */usr/lib* folder. This is a fairly crude way of doing this, but after the numerous issues I came across with getting the project started, it became the least of my worries.
+The last thing that needs to be done to ensure the robot can use the library is to copy the files from the *lib/* folder in your build directory to the robot's */usr/lib* folder. This is a fairly crude way of doing this, but after the numerous issues I came across with getting the project started, it became the least of my worries.
+
+I must mention that a number of the parameters used in building the library can probably be changed without adverse effects on the overall build, but I opted to not test every possible configuration, since I wasn't going for a large-scale deployment of this system. I leave it up to you to customize your own build as you'd like.
+
+
+## Networking
+The
