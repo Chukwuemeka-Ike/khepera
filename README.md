@@ -82,14 +82,10 @@ Assuming you made no changes to the library, you shouldn't have to transfer any 
 
 The header files that are generated in the *'libkhepera-2.0/build-khepera-3.5.7-custom/include'* folder are the same that are in the */include* folder of this repository, and are the ones used in building the sample applications.
 
-***
-
-The Aruco dictionary used by this project is DICT_4X4_50
-
 
 ## OpenCV
 #### Required Setup
-To get started, you will need to download the [OpenCV](https://github.com/opencv/opencv) and [OpenCV_contrib](https://github.com/opencv/opencv_contrib) library files. The first link contains the core OpenCV files, while the second contains a bunch of extra modules that add some capabilities, albeit with some stability issues. The AruCo library is contained in the *contrib* repo.
+To get started, you will need to download the [OpenCV](https://github.com/opencv/opencv) and [OpenCV_contrib](https://github.com/opencv/opencv_contrib) library files. The first link contains the core OpenCV files, while the second contains a bunch of extra modules that add some capabilities, albeit with some stability issues. The ArUco library is contained in the *contrib* repo.
 
 I suggest cloning both of these repos into the same OpenCV folder in your home directory. After doing so, you can move on to the next step of the process.
 
@@ -129,7 +125,13 @@ I must mention that a number of the parameters used in building the library can 
 Now that you can use the OpenCV library on the Khepera, it's important that we first calibrate the camera, so as to allow for fairly accurate pose estimation.
 
 ## Camera Calibration
-There are a million and one fairly exhaustive camera calibration tutorials, and I believe they all do it better than I can, so I will refrain from attempting. All that bears saying here is that in order for the robot to be able to consistently estimate the position of the AruCo tags relative to itself, it needs to have the intrinsic and extrinsic camera parameters. The code in the *camera-calibration/* folder aims to extract these parameters by taking a series of photos using the camera, and then measuring the distortion over all these images.
+There are a million and one fairly exhaustive camera calibration tutorials, and I believe they all do it better than I can, so I will refrain from attempting. All that bears saying here is that in order for the robot to be able to consistently estimate the position of the ArUco tags relative to itself, it needs to have the intrinsic and extrinsic camera parameters.
+
+The code in the *camera-calibration/* folder aims to extract these parameters by taking a series of photos using the camera, and then measuring the distortion over all these images.
+
+## ArUco Tag Detection
+The ArUco dictionary used by this project is DICT_4X4_50
+
 
 The *camera-calibration* folder has instructions on using the contents therein. This was just a brief background on the necessity of calibration.
 
