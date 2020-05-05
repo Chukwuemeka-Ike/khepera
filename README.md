@@ -131,5 +131,18 @@ Now that you can use the OpenCV library on the Khepera, it's important that we f
 ## Camera Calibration
 There are a million and one fairly exhaustive camera calibration tutorials, and I believe they all do it better than I can, so I will refrain from attempting. All that bears saying here is that in order for the robot to be able to consistently estimate the position of the AruCo tags relative to itself, it needs to have the intrinsic and extrinsic camera parameters. The code in the *camera-calibration/* folder aims to extract these parameters by taking a series of photos using the camera, and then measuring the distortion over all these images.
 
+The *camera-calibration* folder has instructions on using the contents therein. This was just a brief background on the necessity of calibration.
+
 ## Networking
-The
+While the ability of each Khepera to estimate its position in the environment was incredibly important, it was equally vital for it to be
+
+
+## Usage
+The remainder of this is written if you intend to use the code that I've already pre-written. To be sure, I assume in this section that each of the installed components were placed in the recommended folders. If you did not, I will do my best to point you to which aspects need to be tweaked in this tutorial.
+
+I use the CMakeLists.txt file to instruct the cmake utility on how to build the poseEstimate executable. To use it, run
+```bash
+cmake .
+make
+```
+The CMakeLists file specifies the target system architecture, the compiler to use, and the directory for the OpenCV package that we built specifically for Poky. Running ```cmake .``` creates a Makefile, which allows us build the executable that we can then run on the Khepera.
