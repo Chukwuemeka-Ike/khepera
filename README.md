@@ -129,9 +129,6 @@ There are a million and one fairly exhaustive camera calibration tutorials, and 
 
 The code in the *camera-calibration/* folder aims to extract these parameters by taking a series of photos using the camera, and then measuring the distortion over all these images. The *camera-calibration* folder has instructions on using the contents therein. This was just a brief background on the necessity of calibration.
 
-## Networking
-While the ability of each Khepera to estimate its position in the environment was incredibly important, it was equally vital for it to be
-
 ## Usage
 The remainder of this is written if you intend to use the code that I've already pre-written. To be sure, I assume in this section that each of the installed components were placed in the recommended folders. If you did not, I will do my best to point you to which aspects need to be tweaked in this tutorial.
 
@@ -141,3 +138,7 @@ cmake .
 make
 ```
 The CMakeLists file specifies the target system architecture, the compiler to use, and the directory for the OpenCV package that we built specifically for Poky. Running ```cmake .``` creates a Makefile, which allows us build the executable that we can then run on the Khepera.
+
+
+## Networking
+While the ability of each Khepera to estimate its position in the environment was incredibly important, it was equally vital for it to be able to communicate this information to the other robots in the swarm.
