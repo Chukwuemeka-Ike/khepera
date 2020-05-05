@@ -22,7 +22,8 @@ public:
     enum Pattern { NOT_EXISTING, CHESSBOARD, CIRCLES_GRID, ASYMMETRIC_CIRCLES_GRID };
     enum InputType { INVALID, CAMERA, VIDEO_FILE, IMAGE_LIST };
 
-    void write(FileStorage& fs) const                        //Write serialization for this class
+    // Write serialization for this class
+    void write(FileStorage& fs) const
     {
         fs << "{"
                   << "BoardSize_Width"  << boardSize.width
@@ -46,7 +47,8 @@ public:
                   << "Input" << input
            << "}";
     }
-    void read(const FileNode& node)                          //Read serialization for this class
+    // Read serialization for this class
+    void read(const FileNode& node)
     {
         node["BoardSize_Width" ] >> boardSize.width;
         node["BoardSize_Height"] >> boardSize.height;
@@ -73,6 +75,7 @@ public:
 
         validate();
     }
+
     void validate()
     {
         goodInput = true;
@@ -91,8 +94,8 @@ public:
             cerr << "Invalid number of frames " << nrFrames << endl;
             goodInput = false;
         }
-
-        if (input.empty())      // Check for valid input
+        // Check for valid input
+        if (input.empty())
                 inputType = INVALID;
         else
         {
@@ -276,30 +279,20 @@ int main(int argc, char* argv[])
     if (!fs.isOpened())
     {
         cout << "Could not open the configuration file: \"config.xml\"" << endl;
-        // parser.printMessage();
         return -1;
     }
     fs["Settings"] >> s;
     fs.release();                                         // close Settings file
-    //! [file_read]
 
-    //FileStorage fout("settings.yml", FileStorage::WRITE); // write config as YAML
-    //fout << "Settings" << s;
-
+    // check if
     if (!s.goodInput)
     {
         cout << "Invalid input detected. Application stopping. " << endl;
         return -1;
     }
 
-    // int winSize = parser.get<int>("winSize");
-
     float grid_width = s.squareSize * (s.boardSize.width - 1);
     bool release_object = false;
-    // if (parser.has("d")) {
-    //     grid_width = parser.get<float>("d");
-    //     release_object = true;
-    // }
 
     vector<vector<Point2f> > imagePoints;
     Mat cameraMatrix, distCoeffs;
@@ -310,7 +303,6 @@ int main(int argc, char* argv[])
     const char ESC_KEY = 27;
 
     printf("Entering infinite loop\n");
-    //! [get_input]
     for(;;)
     {
         Mat view;
@@ -345,12 +337,10 @@ int main(int argc, char* argv[])
 
             break;
         }
-        //! [get_input]
 
         imageSize = view.size();  // Format input image.
         if( s.flipVertical )    flip( view, view, 0 );
 
-        //! [find_pattern]
         vector<Point2f> pointBuf;
 
         bool found;
@@ -373,9 +363,8 @@ int main(int argc, char* argv[])
             found = false;
             break;
         }
-        //! [find_pattern]
-        //! [pattern_found]
-        if ( found)                // If done with success,
+        // If done with success,
+        if ( found)
         {
               printf("Found\n");
               // improve the found corners' coordinate accuracy for chessboard
@@ -431,66 +420,13 @@ int main(int argc, char* argv[])
             else
               undistort(temp, view, cameraMatrix, distCoeffs);
         }
-        //! [output_undistorted]
-        //------------------------------ Show image and check for input commands -------------------
-        //! [await_input]
-        // imshow("Image View", view);
-        // char key = (char)waitKey(s.inputCapture.isOpened() ? 50 : s.delay);
-        //
-        // if( key  == ESC_KEY )
-        //     break;
-        //
-        // if( key == 'u' && mode == CALIBRATED )
-        //    s.showUndistorsed = !s.showUndistorsed;
-        //
-        // if( s.inputCapture.isOpened() && key == 'g' )
-        // {
-        //     mode = CAPTURING;
-        //     imagePoints.clear();
-        // }
-        //! [await_input]
     }
 
-    // -----------------------Show the undistorted image for the image list ------------------------
-    //! [show_results]
-    // if( s.inputType == Settings::IMAGE_LIST && s.showUndistorsed )
-    // {
-    //     Mat view, rview, map1, map2;
-    //
-    //     if (s.useFisheye)
-    //     {
-    //         Mat newCamMat;
-    //         fisheye::estimateNewCameraMatrixForUndistortRectify(cameraMatrix, distCoeffs, imageSize,
-    //                                                             Matx33d::eye(), newCamMat, 1);
-    //         fisheye::initUndistortRectifyMap(cameraMatrix, distCoeffs, Matx33d::eye(), newCamMat, imageSize,
-    //                                          CV_16SC2, map1, map2);
-    //     }
-    //     else
-    //     {
-    //         initUndistortRectifyMap(
-    //             cameraMatrix, distCoeffs, Mat(),
-    //             getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, 1, imageSize, 0), imageSize,
-    //             CV_16SC2, map1, map2);
-    //     }
-    //
-    //     for(size_t i = 0; i < s.imageList.size(); i++ )
-    //     {
-    //         view = imread(s.imageList[i], IMREAD_COLOR);
-    //         if(view.empty())
-    //             continue;
-    //         remap(view, rview, map1, map2, INTER_LINEAR);
-    //         imshow("Image View", rview);
-    //         char c = (char)waitKey();
-    //         if( c  == ESC_KEY || c == 'q' || c == 'Q' )
-    //             break;
-    //     }
-    // }
-    //! [show_results]
 
     return 0;
 }
 
-//! [compute_errors]
+
 static double computeReprojectionErrors( const vector<vector<Point3f> >& objectPoints,
                                          const vector<vector<Point2f> >& imagePoints,
                                          const vector<Mat>& rvecs, const vector<Mat>& tvecs,
@@ -548,13 +484,13 @@ static void calcBoardCornerPositions(Size boardSize, float squareSize, vector<Po
         break;
     }
 }
-//! [board_corners]
+
 static bool runCalibration( Settings& s, Size& imageSize, Mat& cameraMatrix, Mat& distCoeffs,
                             vector<vector<Point2f> > imagePoints, vector<Mat>& rvecs, vector<Mat>& tvecs,
                             vector<float>& reprojErrs,  double& totalAvgErr, vector<Point3f>& newObjPoints,
                             float grid_width, bool release_object)
 {
-    //! [fixed_aspect]
+  
     cameraMatrix = Mat::eye(3, 3, CV_64F);
     if( s.flag & CALIB_FIX_ASPECT_RATIO )
         cameraMatrix.at<double>(0,0) = s.aspectRatio;
