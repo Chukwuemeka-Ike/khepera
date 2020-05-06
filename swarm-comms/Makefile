@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chukwuemeka/khepera4_development/crossCompile
+CMAKE_SOURCE_DIR = /home/chukwuemeka/khepera4_development/crossCompile/swarm-comms
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chukwuemeka/khepera4_development/crossCompile
+CMAKE_BINARY_DIR = /home/chukwuemeka/khepera4_development/crossCompile/swarm-comms
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/swarm-comms/CMakeFiles /home/chukwuemeka/khepera4_development/crossCompile/swarm-comms/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chukwuemeka/khepera4_development/crossCompile/swarm-comms/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named poseEstimate
+# Target rules for targets named swarmComms
 
 # Build rule for target.
-poseEstimate: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 poseEstimate
-.PHONY : poseEstimate
+swarmComms: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 swarmComms
+.PHONY : swarmComms
 
 # fast build rule for target.
-poseEstimate/fast:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/build
-.PHONY : poseEstimate/fast
+swarmComms/fast:
+	$(MAKE) -f CMakeFiles/swarmComms.dir/build.make CMakeFiles/swarmComms.dir/build
+.PHONY : swarmComms/fast
 
-poseEstimate.o: poseEstimate.cpp.o
+swarmComms.o: swarmComms.cpp.o
 
-.PHONY : poseEstimate.o
+.PHONY : swarmComms.o
 
 # target to build an object file
-poseEstimate.cpp.o:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/poseEstimate.cpp.o
-.PHONY : poseEstimate.cpp.o
+swarmComms.cpp.o:
+	$(MAKE) -f CMakeFiles/swarmComms.dir/build.make CMakeFiles/swarmComms.dir/swarmComms.cpp.o
+.PHONY : swarmComms.cpp.o
 
-poseEstimate.i: poseEstimate.cpp.i
+swarmComms.i: swarmComms.cpp.i
 
-.PHONY : poseEstimate.i
+.PHONY : swarmComms.i
 
 # target to preprocess a source file
-poseEstimate.cpp.i:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/poseEstimate.cpp.i
-.PHONY : poseEstimate.cpp.i
+swarmComms.cpp.i:
+	$(MAKE) -f CMakeFiles/swarmComms.dir/build.make CMakeFiles/swarmComms.dir/swarmComms.cpp.i
+.PHONY : swarmComms.cpp.i
 
-poseEstimate.s: poseEstimate.cpp.s
+swarmComms.s: swarmComms.cpp.s
 
-.PHONY : poseEstimate.s
+.PHONY : swarmComms.s
 
 # target to generate assembly for a file
-poseEstimate.cpp.s:
-	$(MAKE) -f CMakeFiles/poseEstimate.dir/build.make CMakeFiles/poseEstimate.dir/poseEstimate.cpp.s
-.PHONY : poseEstimate.cpp.s
+swarmComms.cpp.s:
+	$(MAKE) -f CMakeFiles/swarmComms.dir/build.make CMakeFiles/swarmComms.dir/swarmComms.cpp.s
+.PHONY : swarmComms.cpp.s
 
 # Help Target
 help:
@@ -158,10 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... poseEstimate"
-	@echo "... poseEstimate.o"
-	@echo "... poseEstimate.i"
-	@echo "... poseEstimate.s"
+	@echo "... swarmComms"
+	@echo "... swarmComms.o"
+	@echo "... swarmComms.i"
+	@echo "... swarmComms.s"
 .PHONY : help
 
 

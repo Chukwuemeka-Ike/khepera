@@ -1,4 +1,4 @@
-#include "include/khepera.h"
+#include "../include/khepera.h"
 #include <opencv2/opencv.hpp>
 #include <opencv2/aruco.hpp>
 #include <stdlib.h>
