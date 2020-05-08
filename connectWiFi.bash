@@ -9,3 +9,4 @@ systemctl daemon-reload
 systemctl restart wpa_supplicant@wlan0
 ifdown wlan0
 ifup wlan0
+
