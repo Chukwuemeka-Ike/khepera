@@ -1,7 +1,5 @@
 # Khepera IV Pose Estimation Package
 
-Sail
-
 This package was developed by Chukwuemeka Osaretin Ike (2020) to facilitate a research project in the Julius Lab at Rensselaer Polytechnic Institute.
 
 The tools described here employ the OpenCV and ArUco libraries in estimating the pose of a Khepera IV robot with respect to ArUco markers placed throughout an experimental space.
