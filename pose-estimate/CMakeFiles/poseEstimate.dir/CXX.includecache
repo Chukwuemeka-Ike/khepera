@@ -1052,35 +1052,35 @@ opencv2/aruco/dictionary.hpp
 opencv2/core.hpp
 -
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_camera.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_camera.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_cmdparser.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_cmdparser.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_config.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_config.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_error.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_error.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_gpio.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_gpio.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_gripper.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_gripper.h
 knet.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/knet.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/knet.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_init.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_init.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_khepera4.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_khepera4.h
 knet.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/knet.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/knet.h
 math.h
 -
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_lrf.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_lrf.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_memory.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_memory.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_pwm.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_pwm.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_socket.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_socket.h
 sys/socket.h
 -
 arpa/inet.h
@@ -1092,19 +1092,19 @@ string.h
 unistd.h
 -
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_sound.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_sound.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_stargazer.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_stargazer.h
 khepera.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/khepera.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/khepera.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_symbol.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_symbol.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_time.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_time.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_utils.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_utils.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/khepera.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/khepera.h
 dirent.h
 -
 errno.h
@@ -1132,55 +1132,55 @@ sys/stat.h
 getopt.h
 -
 kb_init.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_init.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_init.h
 kb_error.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_error.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_error.h
 kb_memory.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_memory.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_memory.h
 kb_time.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_time.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_time.h
 kb_cmdparser.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_cmdparser.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_cmdparser.h
 kb_symbol.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_symbol.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_symbol.h
 kb_config.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_config.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_config.h
 kb_socket.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_socket.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_socket.h
 kb_sound.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_sound.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_sound.h
 kb_gpio.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_gpio.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_gpio.h
 kb_pwm.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_pwm.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_pwm.h
 kb_lrf.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_lrf.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_lrf.h
 kb_gripper.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_gripper.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_gripper.h
 kb_utils.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_utils.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_utils.h
 kb_stargazer.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_stargazer.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_stargazer.h
 kb_camera.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_camera.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_camera.h
 kb_khepera4.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kb_khepera4.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kb_khepera4.h
 knet.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/knet.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/knet.h
 kmot.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kmot.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kmot.h
 koreio.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/koreio.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/koreio.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/kmot.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/kmot.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/knet.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/knet.h
 
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/koreio.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/koreio.h
 
 /home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/poseEstimate.cpp
-include/khepera.h
-/home/chukwuemeka/khepera4_development/crossCompile/pose-estimate/include/khepera.h
+../include/khepera.h
+/home/chukwuemeka/khepera4_development/crossCompile/include/khepera.h
 opencv2/opencv.hpp
 -
 opencv2/aruco.hpp

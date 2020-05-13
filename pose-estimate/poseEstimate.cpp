@@ -17,7 +17,14 @@ int main(int argc, char *argv[])
 
   // Declare the cv matrices to hold the images and necessary camera parameters
   cv::Mat inputImage, frame, cameraMatrix, distCoeffs;
-
+  cout << "Setting Pipes\n";
+  system("media-pipes.sh");
+  cout << "Setting Format\n";
+  system("media-formats.sh 752 480");
+  cout << "Taking Image\n";
+  system("v4l2grab –d /dev/video6 –o image.jpg –W 752 –H 480 –q 85 –I -1");
+  cout << "Made it thus far. Opening camera file, and detecting tags\n";
+  
   // Get the camera parameters from the cameraData.xml file
   FileStorage fs("./cameraData.xml", FileStorage::READ);
   if(!fs.isOpened())

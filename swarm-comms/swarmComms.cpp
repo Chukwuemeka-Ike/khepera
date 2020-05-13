@@ -149,17 +149,19 @@ int main(int argc, char *argv[])
           int targetID = ((rand() % 15) + 1);
           cout << targetID << endl;
           myPose << "Target ID" << targetID;
-
+          cout << markerIds.size() << endl;
           // draw axis for each marker
           for(int i=0; i<markerIds.size(); i++)
           {
             cv::aruco::drawAxis(imageCopy, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1);
           }
           cout << "tvecs:\n" << tvecs[0] << "\n";
+          cout << "tvecs size: " << sizeof(tvecs) << "\n";
           myPose << "tvecs" << "[";
           myPose << tvecs[0] << "]";
 
           cout << "rvecs:\n" << rvecs[0] << "\n\n\n";
+          cout << "rvecs size: " << sizeof(rvecs) << "\n";
           myPose << "rvecs" << "[";
           myPose << rvecs[0] << "]";
           myPose.release();
