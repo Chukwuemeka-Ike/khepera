@@ -54,11 +54,11 @@ int main()
 
     if(myEstim.isOpened())
     {
-      myEstim["Estimate"] >> currentEstimate;
+      // myEstim["Estimate"] >> currentEstimate;
       FileNode mNode = myEstim["Estimate"];
       if (mNode.type() != FileNode::SEQ)
       {
-          cerr << "Tvecs is not a sequence! FAIL" << endl;
+          cerr << "Estimate is not a sequence! FAIL" << endl;
           return 1;
       }
       // Go through the node
@@ -71,7 +71,8 @@ int main()
       myEstim["Engage Flag"] >> myEngageFlag;
       myEstim["Acknowledge Flag"] >> myAckFlag;
       myEstim["Close Flag"] >> myCloseFlag;
-      // cout << "Estimate: " << currentEstimate << endl;
+      cout << "Estimate: " << currentEstimate[0] << endl;
+      cout << "\t" << currentEstimate[1] << endl;
       cout << "Previously Paired With: " << pairedID << "\n\n";
     }
 
