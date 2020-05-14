@@ -158,17 +158,30 @@ int main()
 
             // float actualPosition[3] = {};
             cv::Rodrigues(rvecs[0], rotMatrix);
+            double transCameraToTag[4][4] = {{},{},{},{0,0,0,1}};
+
             double transL[3] = {};
             for(int i = 0; i < rotMatrix.rows; i++)
             {
               const double* rotMatI = rotMatrix.ptr<double>(i);
               for(int j = 0; j < rotMatrix.cols; j++)
               {
-                transL[i] += rotMatI[j]*tvecs[0][j];
+                transCameraToTag[j][i] = rotMatI[j];
+                // transL[i] += rotMatI[j]*tvecs[0][j];
               }
-              cout << transL[i] << "\n\n";
+              // cout << transL[i] << "\n\n";
             }
             cout << "Rotation Matrix: \n" << rotMatrix << endl;
+            cout << "Transposed: \n";
+            for(int i = 0; i < 4; i++)
+            {
+              for (int j = 0; j < 4; j++)
+              {
+                cout << transCameraToTag[i][j] << "|";
+              }
+              cout << "\n";
+            }
+            cout << "\n\n";
             // actualPosition[0] = tvecs[0][0]*rvecs[0][0];
             // cout << actualPosition[0];
 

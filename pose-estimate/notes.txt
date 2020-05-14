@@ -1,0 +1,7 @@
+1. Need a transformation from the tag to the camera.
+2. This is based on the tvecs and rvecs
+3. Transformation of camera from universal frame then comes from
+4. transTagToBase * transCameraToTag
+5. This final 4x4 gives the Rotation from Base to Camera, and
+6. Translation from Base to Camera.
+7. Given this, we can figure out where the Khepera is $$$ 
