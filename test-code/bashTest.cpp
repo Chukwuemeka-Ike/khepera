@@ -158,9 +158,11 @@ int main()
 
             // float actualPosition[3] = {};
             cv::Rodrigues(rvecs[0], rotMatrix);
-            double transCameraToTag[4][4] = {{},{},{},{0,0,0,1}};
+            double transCameraToTag[4][4] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,1}};
+            double transTagToBase[4][4] = {{1,0,0,0.3}, {0,1,0,0}, {0,0,-1,1}, {0,0,0,1}};
 
             double transL[3] = {};
+            // Transpose the rotation matrix and add it to the transformation matrix
             for(int i = 0; i < rotMatrix.rows; i++)
             {
               const double* rotMatI = rotMatrix.ptr<double>(i);
@@ -171,8 +173,18 @@ int main()
               }
               // cout << transL[i] << "\n\n";
             }
+            // Compute the transformed translation from the camera to the tag frame
+            for (int i = 0; i < 3; i++)
+            {
+              for (int j = 0; j < 3; j++)
+              {
+                  transCameraToTag[i][3] += transCameraToTag[i][j]*tvecs[0][j];
+              }
+              // transCameraToTag[0][3] = (transCameraToTag[0][0]*tvecs[0][0]) + (transCameraToTag[0][1]*tvecs[0][1]) + (transCameraToTag[0][2]*tvecs[0][2]);
+            }
+
             cout << "Rotation Matrix: \n" << rotMatrix << endl;
-            cout << "Transposed: \n";
+            cout << "Camera To Tag: \n";
             for(int i = 0; i < 4; i++)
             {
               for (int j = 0; j < 4; j++)
@@ -182,9 +194,16 @@ int main()
               cout << "\n";
             }
             cout << "\n\n";
-            // actualPosition[0] = tvecs[0][0]*rvecs[0][0];
-            // cout << actualPosition[0];
-
+            cout << "Tag To Base: \n";
+            for(int i = 0; i < 4; i++)
+            {
+              for (int j = 0; j < 4; j++)
+              {
+                cout << transTagToBase[i][j] << "|";
+              }
+              cout << "\n";
+            }
+            cout << "\n\n";
         }
         // Show the estimated poses and detected markers
         cv::imshow("Output", imageCopy);
