@@ -3,6 +3,8 @@
 Sender ID: "192.168.43.233"
 Paired With: "192.168.43.233"
 Engage Flag: 0
-Acknowledge Flag: 0
-Close Flag: 0
-Estimate: 1.9874619245529175e+00
+Acknowledge Flag: 1
+Close Flag: 1
+Estimate:
+   - 1.1505615234375000e+01
+   - 5.6152343750000000e-03

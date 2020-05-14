@@ -72,21 +72,74 @@ int main(int argc, char *argv[])
 
     // Convert the rotation vector to a rotation matrix
     cv::Rodrigues(rvecs[0], rotMatrix);
-    cout << "Rotation Matrix: \n" << rotMatrix << "\n\n";
+    double transCameraToTag[4][4] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,1}};
+    double transTagToBase[4][4] = {{1,0,0,0.3}, {0,1,0,0}, {0,0,-1,1}, {0,0,0,1}};
+    double transCameraToBase[4][4] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
 
-    double transL[3] = {};
+    // Transpose the rotation matrix and add it to the transformation matrix
     for(int i = 0; i < rotMatrix.rows; i++)
     {
       const double* rotMatI = rotMatrix.ptr<double>(i);
       for(int j = 0; j < rotMatrix.cols; j++)
       {
-        transL[i] += rotMatI[j]*tvecs[0][j];
+        transCameraToTag[j][i] = rotMatI[j];
       }
-      cout << transL[i] << "\n";
+    }
+    // Compute the transformed translation from the camera to the tag frame
+    for (int i = 0; i < 3; i++)
+    {
+      for (int j = 0; j < 3; j++)
+      {
+          transCameraToTag[i][3] += transCameraToTag[i][j]*tvecs[0][j];
+      }
+      transCameraToTag[i][3] = -transCameraToTag[i][3];
     }
 
-    
-    cout << "\n";
+    cout << "Rotation Matrix: \n" << rotMatrix << endl;
+    cout << "Camera To Tag: \n";
+    for(int i = 0; i < 4; i++)
+    {
+      for (int j = 0; j < 4; j++)
+      {
+        cout << transCameraToTag[i][j] << "|";
+      }
+      cout << "\n";
+    }
+    cout << "\n\n";
+    cout << "Tag To Base: \n";
+    for(int i = 0; i < 4; i++)
+    {
+      for (int j = 0; j < 4; j++)
+      {
+        cout << transTagToBase[i][j] << "|";
+      }
+      cout << "\n";
+    }
+    cout << "\n\n";
+
+
+    // Final Transformation Matrix from the Camera to the Base Frame
+    for(int i = 0; i < 4; i++)
+    {
+      for(int j = 0; j < 4; j++)
+      {
+        for (int k = 0; k < 4; k++)
+        {
+          transCameraToBase[i][j] += (double) transTagToBase[i][k] * transCameraToTag[k][j];
+        }
+      }
+
+    }
+    cout << "Camera To Base: \n";
+    for(int i = 0; i < 4; i++)
+    {
+      for (int j = 0; j < 4; j++)
+      {
+        cout << std::setprecision(4) << transCameraToBase[i][j] << "|";
+      }
+      cout << "\n";
+    }
+    cout << "\n\n";
 
 
   }
