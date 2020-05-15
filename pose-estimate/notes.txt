@@ -4,4 +4,45 @@
 4. transTagToBase * transCameraToTag
 5. This final 4x4 gives the Rotation from Base to Camera, and
 6. Translation from Base to Camera.
-7. Given this, we can figure out where the Khepera is $$$ 
+7. Given this, we can figure out where the Khepera is $$$
+
+
+
+Comms Protocol:
+1. K1 is free.
+2. K1 picks a random IP (K2) and sends:
+    Sender ID: K1
+    Paired With: K2
+    Engage: 1
+    Ack: 0
+    Close: 0
+    Estim: x
+    My Pos: x
+3. K2 receives this
+4. K2 then sends:
+    Sender ID: K2
+    Paired With: K1
+    Engage: 0
+    Ack: 1
+    Close: 0
+    Estim: K2 current
+    My Pos: K2 current
+5. K1 receives this
+6. K1 sends:
+    Sender ID: K1
+    Paired With: K2
+    Engage: 0
+    Ack: 1
+    Close: 1
+    Estim: K1 current
+    My Pos: K1 current
+7. K2 receives this
+8. K2 sends:
+    Sender ID: K2
+    Paired With: K1
+    Engage: 0
+    Ack: 0
+    Close: 1
+    Estim: K2 current
+    My Pos: K2 current
+9. K1 receives and shuts down comms

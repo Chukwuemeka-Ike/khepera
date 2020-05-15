@@ -3,6 +3,7 @@
 // #include <opencv2/opencv.hpp>
 // #include <opencv2/aruco.hpp>
 #include <iostream>
+#include <time.h>
 
 // Important namespaces for less typing
 using namespace std;
@@ -10,12 +11,16 @@ using namespace std;
 
 int main()
 {
-  float transCameraToTag[3][3] = {{0.1, 2, 3},
-                                 {4.1, 5.3, 6.2},
-                                 {7, 8, 9}};
 
-  double trial = (0.99309*0.3) + (-0.00289535*1) + ( -0.044251*1);
-  cout << trial << endl;
+  srand (time(NULL));
+  char targetIP[20];
+  sprintf(targetIP, "192.168.43.%d", (rand()  % 4) + 233 ) ;
+  cout << targetIP << endl;
 
+  // Generate and store a random IP address
+  // char s[20];
+  // sprintf(s, "%d.%d.%d.%d", rand() & 0xFF, rand() & 0xFF,
+  //                             rand() & 0xFF, rand() & 0xFF ) ;
+  // cout << s << endl;
   return 0;
 }
