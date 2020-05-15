@@ -333,11 +333,139 @@ int main(int argc, char *argv[])
 
       printf("X-Position: %f\n", currentPos[0]);
       printf("Z-Position: %f\n\n", currentPos[1]);
+
+      // Reopen myEstimate.yaml to write the new information available
+      myEstim.open(myEstimate, FileStorage::WRITE);
+      if(!myEstim.isOpened())
+      {
+        cout << "Couldn't open my estimate file" << endl;
+      }
+      else
+      {
+        printf("--------------------------------------------------------------\n");
+        myEstim << "Sender ID" << MY_IP;
+
+        // Check if this is a hail and if I am available, initiate handshake
+        if(engageFlag && !myAckFlag)
+        {
+          printf("New Hail Received\n");
+
+          myEstim << "Paired With" << senderID;
+          myEstim << "Engage Flag" << 0;
+          myEstim << "Acknowledge Flag" << 1;
+          myEstim << "Close Flag" << 0;
+
+          myEstim << "Estimate" << "[" << currentEstimate[0] << currentEstimate[1] << "]";
+          myEstim << "My Position" << "[" << currentPos[0] << currentPos[1] << "]";
+          myEstim.release();
+          // Copy the estimate so we can send it to the paired Khepera
+          system("cp myEstimate.yaml my.yaml");
+        }
+        else if (engageFlag && myAckFlag)
+        {
+          printf("Currently Busy\n");
+
+          myEstim << "Paired With" << pairedID;
+          myEstim << "Engage Flag" << myEngageFlag;
+          myEstim << "Acknowledge Flag" << myAckFlag;
+          myEstim << "Close Flag" << myCloseFlag;
+          myEstim << "Estimate" << "[" << currentEstimate[0] << currentEstimate[1] << "]";
+          myEstim << "My Position" << "[" << currentPos[0] << currentPos[1] << "]";
+          myEstim.release();
+          // Copy the estimate so we can send it to the paired Khepera
+          system("cp myEstimate.yaml my.yaml");
+        }
+        // If I receive an acknowledge from a previously paired Khepera,
+        // send my estimate and then update
+        else if(ackFlag && (myAckFlag) && (!myCloseFlag) && (senderID == pairedID))
+        {
+          printf("Sending Previous Estimate\n\n");
+
+          myEstim << "Paired With" << senderID;
+          myEstim << "Engage Flag" << 0;
+          myEstim << "Acknowledge Flag" << 1;
+          myEstim << "Close Flag" << 1;
+          myEstim << "Estimate" << "[" << currentEstimate[0] << currentEstimate[1] << "]";
+          myEstim << "My Position" << "[" << prevPos[0] << prevPos[1] << "]";
+          myEstim.release();
+          // Copy the estimate so we can send it to the paired Khepera
+          system("cp myEstimate.yaml my.yaml");
+
+          printf("Updating Estimate\n\n");
+
+          myEstim.open(myEstimate, FileStorage::WRITE);
+          myEstim << "Sender ID" << MY_IP;
+          myEstim << "Paired With" << senderID;
+          myEstim << "Engage Flag" << 0;
+          myEstim << "Acknowledge Flag" << 1;
+          myEstim << "Close Flag" << 1;
+          currentEstimate[0] = ((currentEstimate[0] + otherEstimate[0])/2)
+                                                  + (currentPos[0] - prevPos[0]);
+          currentEstimate[1] = ((currentEstimate[1] + otherEstimate[1])/2)
+                                                  + (currentPos[1] - prevPos[1]);
+          myEstim << "Estimate" << "[" << currentEstimate[0] << currentEstimate[1] << "]";
+          myEstim << "My Position" << "[" << currentPos[0] << currentPos[1] << "]";
+          myEstim.release();
+        }
+        // If the received closed flag is on, send my estimate, and
+        // set my close flag on
+        else if(closeFlag && (senderID == pairedID))
+        {
+          printf("Shutting Down Comms\n");
+
+          myEstim << "Paired With" << senderID;
+          myEstim << "Engage Flag" << 0;
+          myEstim << "Acknowledge Flag" << 0;
+          myEstim << "Close Flag" << 1;
+          myEstim << "Estimate" << "[" << currentEstimate[0] << currentEstimate[1] << "]";
+          myEstim << "My Position" << "[" << currentPos[0] << currentPos[1] << "]";
+          myEstim.release();
+          // Copy the estimate so we can send it to the paired Khepera
+          system("cp myEstimate.yaml my.yaml");
+        }
+        // If I received no hail and am not in the middle of comms,
+        // try hailing a random khepera within the set range of IPs
+        // Update my estimate with my new position
+        else //if(!engageFlag && !ackFlag && !closeFlag)
+        {
+          srand (time(NULL));
+          char targetIP[20];
+          sprintf(targetIP, "192.168.43.%d", (rand()  % 4) + 233 );
+
+          printf("Initiating Comms with %s\n", targetIP);
+
+          pairedID = targetIP;
+          myEstim << "Paired With" << targetIP;
+          myEstim << "Engage Flag" << 1;
+          myEstim << "Acknowledge Flag" << 1;
+          myEstim << "Close Flag" << 0;
+          currentEstimate[0] = currentEstimate[0] + (currentPos[0] - prevPos[0]);
+          currentEstimate[1] = currentEstimate[1] + (currentPos[1] - prevPos[1]);
+          myEstim << "Estimate" << "[" << currentEstimate[0] << currentEstimate[1] << "]";
+          myEstim << "My Position" << "[" << currentPos[0] << currentPos[1] << "]";
+          myEstim.release();
+          // Copy the estimate so we can send it to the paired Khepera
+          system("cp myEstimate.yaml my.yaml");
+        }
+        printf("--------------------------------------------------------------\n");
+      }
+      // string sendCommand = "scp my.yaml root@" + pairedID
+      //                      + ":/home/root/pose-estimate/receivedEstimate.yaml";
+      string sendCommand = "scp my.yaml chukwuemeka@192.168.43.234:~/Downloads/receivedEstimate.yaml";
+      char* cpy = new char [sendCommand.length()+1];
+      strcpy(cpy, sendCommand.c_str());
+      printf("Sending Estimate to Paired Khepera\n");
+      system(cpy);
+      system("h3ll1ng4r");
+      printf("\nSuccess!\n");
+
   }
   else
   {
     printf("No Markers Detected!\n");
   }
+
+
 
   return 0;
 }
