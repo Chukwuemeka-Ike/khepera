@@ -170,8 +170,8 @@ int main()
               cv::aruco::drawAxis(imageCopy, cameraMatrix, distCoeffs,
                                                       rvecs[i], tvecs[i], 0.1);
             }
-            // cout << "tvecs:\n" << tvecs[0] << "\n";
-            // cout << "rvecs:\n" << rvecs[0] << "\n\n\n";
+            cout << "tvecs:\n" << tvecs[0] << "\n";
+            cout << "rvecs:\n" << rvecs[0] << "\n\n\n";
 
             // Declare the Identity Transformation Matrix
             double transTagToBase[4][4] = {{1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1}};
@@ -260,32 +260,32 @@ int main()
               transCameraToTag[i][3] = -transCameraToTag[i][3];
             }
 
-            // // Output the tag to camera rotation matrix
-            // cout << "Rotation Matrix: \n" << rotMatrix << endl;
+            // Output the tag to camera rotation matrix
+            cout << "Rotation Matrix: \n" << rotMatrix << endl;
 
-            // // Camera to Tag Transformation Matrix
-            // cout << "Camera To Tag: \n";
-            // for(int i = 0; i < 4; i++)
-            // {
-            //   for (int j = 0; j < 4; j++)
-            //   {
-            //     cout << transCameraToTag[i][j] << "|";
-            //   }
-            //   cout << "\n";
-            // }
-            // cout << "\n\n";
+            // Camera to Tag Transformation Matrix
+            cout << "Camera To Tag: \n";
+            for(int i = 0; i < 4; i++)
+            {
+              for (int j = 0; j < 4; j++)
+              {
+                cout << transCameraToTag[i][j] << "|";
+              }
+              cout << "\n";
+            }
+            cout << "\n\n";
 
-            // // Transformation Matrix from the Tag to the Base Frame
-            // cout << "Tag To Base: \n";
-            // for(int i = 0; i < 4; i++)
-            // {
-            //   for (int j = 0; j < 4; j++)
-            //   {
-            //     cout << transTagToBase[i][j] << "|";
-            //   }
-            //   cout << "\n";
-            // }
-            // cout << "\n\n";
+            // Transformation Matrix from the Tag to the Base Frame
+            cout << "Tag To Base: \n";
+            for(int i = 0; i < 4; i++)
+            {
+              for (int j = 0; j < 4; j++)
+              {
+                cout << transTagToBase[i][j] << "|";
+              }
+              cout << "\n";
+            }
+            cout << "\n\n";
 
             // Multiply the Tag to Base and Camera to Tag Transformation
             // Matrices to yield the Final Transformation Matrix from
@@ -303,17 +303,17 @@ int main()
 
             }
 
-            // // Output the Final Transformation Matrix
-            // cout << "Camera To Base: \n";
-            // for(int i = 0; i < 4; i++)
-            // {
-            //   for (int j = 0; j < 4; j++)
-            //   {
-            //     cout << std::setprecision(4) << transCameraToBase[i][j] << "|";
-            //   }
-            //   cout << "\n";
-            // }
-            // cout << "\n\n";
+            // Output the Final Transformation Matrix
+            cout << "Camera To Base: \n";
+            for(int i = 0; i < 4; i++)
+            {
+              for (int j = 0; j < 4; j++)
+              {
+                cout << std::setprecision(4) << transCameraToBase[i][j] << "|";
+              }
+              cout << "\n";
+            }
+            cout << "\n\n";
 
             currentPos[0] = transCameraToBase[0][3];// - currentPos[0];
             currentPos[1] = transCameraToBase[2][3];// - currentPos[1];
@@ -372,10 +372,10 @@ int main()
         system("cp myEstimate.yaml my.yaml");
       }
       // Check if they have received an acknowledge
-      else if(ackFlag && (myAckFlag) && (!myCloseFlag) && (senderID == pairedID))
+      else if(ackFlag && (myEngageFlag) && (senderID == pairedID))
       {
         printf("Sending Previous Estimate\n\n");
-
+        
         myEstim << "Paired With" << senderID;
         myEstim << "Engage Flag" << 0;
         myEstim << "Acknowledge Flag" << 1;
@@ -430,7 +430,7 @@ int main()
         pairedID = targetIP;
         myEstim << "Paired With" << targetIP;
         myEstim << "Engage Flag" << 1;
-        myEstim << "Acknowledge Flag" << 1;
+        myEstim << "Acknowledge Flag" << 0;
         myEstim << "Close Flag" << 0;
         currentEstimate[0] = currentEstimate[0] + (currentPos[0] - prevPos[0]);
         currentEstimate[1] = currentEstimate[1] + (currentPos[1] - prevPos[1]);

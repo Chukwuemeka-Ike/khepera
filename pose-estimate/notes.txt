@@ -14,7 +14,7 @@ Comms Protocol:
     Sender ID: K1
     Paired With: K2
     Engage: 1
-    Ack: 0
+    Ack: 1
     Close: 0
     Estim: x
     My Pos: x
