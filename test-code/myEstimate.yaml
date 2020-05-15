@@ -2,12 +2,12 @@
 ---
 Sender ID: "192.168.43.233"
 Paired With: "192.168.43.233"
-Engage Flag: 0
-Acknowledge Flag: 0
+Engage Flag: 1
+Acknowledge Flag: 1
 Close Flag: 1
 Estimate:
    - 5.0771522521972656e-01
    - 5.5504977703094482e-01
 My Position:
-   - 2.7427664399147034e-01
-   - 7.3607748746871948e-01
+   - 0.
+   - 0.

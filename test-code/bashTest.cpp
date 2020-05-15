@@ -362,16 +362,17 @@ int main()
         printf("Currently Busy\n");
 
         myEstim << "Paired With" << pairedID;
-        myEstim << "Engage Flag" << 0;
-        myEstim << "Acknowledge Flag" << 1;
-        myEstim << "Close Flag" << 0;
+        myEstim << "Engage Flag" << myEngageFlag;
+        myEstim << "Acknowledge Flag" << myAckFlag;
+        myEstim << "Close Flag" << myCloseFlag;
         myEstim << "Estimate" << "[" << currentEstimate[0] << currentEstimate[1] << "]";
         myEstim << "My Position" << "[" << currentPos[0] << currentPos[1] << "]";
         myEstim.release();
         // Copy the estimate so we can send it to the paired Khepera
         system("cp myEstimate.yaml my.yaml");
       }
-      // Check if they have received an acknowledge
+      // If I receive an acknowledge from a previously paired Khepera,
+      // send my estimate and then update
       else if(ackFlag && (myAckFlag) && (!myCloseFlag) && (senderID == pairedID))
       {
         printf("Sending Previous Estimate\n\n");
@@ -418,7 +419,9 @@ int main()
         // Copy the estimate so we can send it to the paired Khepera
         system("cp myEstimate.yaml my.yaml");
       }
-      // If I received no hail and am not in the middle of comms
+      // If I received no hail and am not in the middle of comms,
+      // try hailing a random khepera within the set range of IPs
+      // Update my estimate with my new position
       else //if(!engageFlag && !ackFlag && !closeFlag)
       {
         srand (time(NULL));

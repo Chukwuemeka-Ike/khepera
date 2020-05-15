@@ -16,6 +16,22 @@ using namespace cv;
 int main(int argc, char *argv[])
 {
   int rc;
+  // Set up variables to take in the information from the received estimate
+  // file
+  std::string senderID = " ";
+  std::string pairedID = " ";
+  int engageFlag = 0;
+  int ackFlag = 0;
+  int closeFlag = 0;
+  std::vector<float> otherEstimate(2);
+  int myEngageFlag = 0;
+  int myAckFlag = 0;
+  int myCloseFlag = 0;
+  int i;
+  std::vector<double> currentEstimate(2);
+  float currentPos[2] = {0,0};
+  float prevPos[2] = {0,0};
+
   /* Set the libkhepera debug level - Highly recommended for development. */
   kb_set_debug_level(2);
 
@@ -42,6 +58,100 @@ int main(int argc, char *argv[])
 
   // Read the last image taken before the pose estimator was run
   inputImage = imread("./image.jpg");
+
+  // Open and read my previous estimate of the average, then close the file
+  printf("\nReading Previous File\n");
+  printf("--------------------------------------------------------------\n");
+  string myEstimate = "myEstimate.yaml";
+  FileStorage myEstim(myEstimate, FileStorage::READ);
+
+  // Check if the file opened successfully
+  if(myEstim.isOpened())
+  {
+    // Create a node to read the Estimate sequence
+    FileNode mNode = myEstim["Estimate"];
+    if (mNode.type() != FileNode::SEQ)
+    {
+        cerr << "Estimate is not a sequence! FAIL" << endl;
+        return 1;
+    }
+    // Go through the node
+    FileNodeIterator im = mNode.begin(), im_end = mNode.end();
+    i = 0;
+    for (; im != im_end; ++im, i++)
+    {
+      currentEstimate[i] = (float)(*im);
+    }
+    // Redefine the node to read the 'My Position' sequence
+    mNode = myEstim["My Position"];
+    if (mNode.type() != FileNode::SEQ)
+    {
+        cerr << "'My Position' is not a sequence! FAIL" << endl;
+        return 1;
+    }
+    // Go through the node
+    im = mNode.begin(), im_end = mNode.end();
+    i = 0;
+    for (; im != im_end; ++im, i++)
+    {
+      prevPos[i] = (float)(*im);
+    }
+    myEstim["Paired With"] >> pairedID;
+    myEstim["Engage Flag"] >> myEngageFlag;
+    myEstim["Acknowledge Flag"] >> myAckFlag;
+    myEstim["Close Flag"] >> myCloseFlag;
+    cout << "Previously Paired With: " << pairedID << "\n";
+    printf("Previous Engage Flag: %d\nAcknowledge: %d\nClose Flag: %d\n",
+                                      myEngageFlag, myAckFlag, myCloseFlag );
+    printf("Previous Estimate (x,z): (%f, %f)\n", currentEstimate[0],currentEstimate[1]);
+    printf("Previous Position (x,z): (%f, %f)\n\n", prevPos[0], prevPos[1]);
+    printf("--------------------------------------------------------------\n");
+  }
+
+  myEstim.release();
+
+  // Open and read the received estimate file
+  printf("Reading Received File\n");
+  string recEstimate = "receivedEstimate.yaml";
+  FileStorage recEstim(recEstimate, FileStorage::READ);
+
+  // Check if the file was available for use
+  if (!recEstim.isOpened())
+  {
+    cout << "No request to engage received!\n";
+  }
+  else
+  {
+    // Grab the Sender ID along with other pertinent information to
+    // ensure we are speaking to the right Khepera
+    recEstim["Sender ID"] >> senderID;
+    recEstim["Engage Flag"] >> engageFlag;
+    recEstim["Acknowledge Flag"] >> ackFlag;
+    recEstim["Close Flag"] >> closeFlag;
+    if((ackFlag) && (senderID == pairedID))
+    {
+      FileNode tNode = recEstim["Estimate"];
+      if (tNode.type() != FileNode::SEQ)
+      {
+          cerr << "Estimate is not a sequence! FAIL" << endl;
+          return 1;
+      }
+      // Go through the node
+      FileNodeIterator it = tNode.begin(), it_end = tNode.end();
+      i = 0;
+      for (; it != it_end; ++it, i++)
+      {
+          otherEstimate[i] = (float)(*it) ;
+      }
+    }
+
+    cout << "Sender ID: " << senderID << endl;
+    printf("Engage Flag: %d\nAcknowledge: %d\nClose Flag: %d\n",
+                                      engageFlag, ackFlag, closeFlag );
+    printf("Other Estimate (x,z): (%f, %f)\n", otherEstimate[0], otherEstimate[1]);
+    printf("--------------------------------------------------------------\n");
+  }
+  recEstim.release();
 
   // Declare some variables to allow for ArUco detection
   std::vector<int> markerIds;
@@ -145,7 +255,7 @@ int main(int argc, char *argv[])
       double transCameraToBase[4][4] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}};
 
       // Transpose the camera to tag rotation matrix and
-         add it to the transformation matrix
+      // add it to the transformation matrix
       for(int i = 0; i < rotMatrix.rows; i++)
       {
         const double* rotMatI = rotMatrix.ptr<double>(i);
@@ -164,32 +274,32 @@ int main(int argc, char *argv[])
         transCameraToTag[i][3] = -transCameraToTag[i][3];
       }
 
-      // Output the tag to camera rotation matrix
-      cout << "Rotation Matrix: \n" << rotMatrix << endl;
-
-      // Camera to Tag Transformation Matrix
-      cout << "Camera To Tag: \n";
-      for(int i = 0; i < 4; i++)
-      {
-        for (int j = 0; j < 4; j++)
-        {
-          cout << transCameraToTag[i][j] << "|";
-        }
-        cout << "\n";
-      }
-      cout << "\n\n";
-
-      // Transformation Matrix from the Tag to the Base Frame
-      cout << "Tag To Base: \n";
-      for(int i = 0; i < 4; i++)
-      {
-        for (int j = 0; j < 4; j++)
-        {
-          cout << transTagToBase[i][j] << "|";
-        }
-        cout << "\n";
-      }
-      cout << "\n\n";
+      // // Output the tag to camera rotation matrix
+      // cout << "Rotation Matrix: \n" << rotMatrix << endl;
+      //
+      // // Camera to Tag Transformation Matrix
+      // cout << "Camera To Tag: \n";
+      // for(int i = 0; i < 4; i++)
+      // {
+      //   for (int j = 0; j < 4; j++)
+      //   {
+      //     cout << transCameraToTag[i][j] << "|";
+      //   }
+      //   cout << "\n";
+      // }
+      // cout << "\n\n";
+      //
+      // // Transformation Matrix from the Tag to the Base Frame
+      // cout << "Tag To Base: \n";
+      // for(int i = 0; i < 4; i++)
+      // {
+      //   for (int j = 0; j < 4; j++)
+      //   {
+      //     cout << transTagToBase[i][j] << "|";
+      //   }
+      //   cout << "\n";
+      // }
+      // cout << "\n\n";
 
       // Multiply the Tag to Base and Camera to Tag Transformation
       // Matrices to yield the Final Transformation Matrix from
@@ -206,17 +316,17 @@ int main(int argc, char *argv[])
         }
       }
 
-      // Output the Final Transformation Matrix
-      cout << "Camera To Base: \n";
-      for(int i = 0; i < 4; i++)
-      {
-        for (int j = 0; j < 4; j++)
-        {
-          cout << transCameraToBase[i][j] << "|";
-        }
-        cout << "\n";
-      }
-      cout << "\n\n";
+      // // Output the Final Transformation Matrix
+      // cout << "Camera To Base: \n";
+      // for(int i = 0; i < 4; i++)
+      // {
+      //   for (int j = 0; j < 4; j++)
+      //   {
+      //     cout << transCameraToBase[i][j] << "|";
+      //   }
+      //   cout << "\n";
+      // }
+      // cout << "\n\n";
 
       currentPos[0] = transCameraToBase[0][3] - currentPos[0];
       currentPos[1] = transCameraToBase[2][3] - currentPos[1];
