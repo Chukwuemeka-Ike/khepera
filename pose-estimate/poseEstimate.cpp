@@ -456,7 +456,6 @@ int main(int argc, char *argv[])
       strcpy(cpy, sendCommand.c_str());
       printf("Sending Estimate to Paired Khepera\n");
       system(cpy);
-      system("h3ll1ng4r");
       printf("\nSuccess!\n");
 
   }
